@@ -12,7 +12,7 @@ This is a multi-module maven project, demonstrating a typical cloud native micro
 6. Course Microservice		- A simple micro-service for exposing REST API's pertaining to Course datastore
 7. Zipkin & Sleuth			- A Java-based distributed tracing system to collect and look up data from distributed systems.
 8. H2 Database				- An in-memory database for storing data pertaining to students and courses
-
+9. Feign Client - For making inter service API calls
 ```
 
 ## Prerequisites
@@ -52,18 +52,18 @@ This project contains below modules.
 
 1. **[cloud-config-repo](https://github.com/MaheshIare/cloud-config-repo)** : Git repo for storing the configurations of services
 
-2. **[cloud-config-server](https://github.com/MaheshIare/microservices-arch-demo/cloud-config-server)** : Custom spring boot based config server, implemented using [Spring cloud config server](https://cloud.spring.io/spring-cloud-config/reference/html/#_spring_cloud_config_server) for retrieving the application configuration
+2. **[cloud-config-server](https://github.com/MaheshIare/microservices-arch-demo/tree/master/cloud-config-server)** : Custom spring boot based config server, implemented using [Spring cloud config server](https://cloud.spring.io/spring-cloud-config/reference/html/#_spring_cloud_config_server) for retrieving the application configuration
 
-3. **[service-discovery-server](https://github.com/MaheshIare/microservices-arch-demo/service-discovery-server)** : Custom spring boot based service registry server, implemented using [Netflix Eureka server](https://cloud.spring.io/spring-cloud-netflix/reference/html/)
+3. **[service-discovery-server](https://github.com/MaheshIare/microservices-arch-demo/tree/master/service-discovery-server)** : Custom spring boot based service registry server, implemented using [Netflix Eureka server](https://cloud.spring.io/spring-cloud-netflix/reference/html/)
 
-4. **[zuul-api-gateway](https://github.com/MaheshIare/microservices-arch-demo/zuul-api-gateway)** : Custom spring boot based zuul api gateway, implemented using [Netflix Zuul](https://github.com/Netflix/zuul) for routing the requests to respective micro-service based on the path
+4. **[zuul-api-gateway](https://github.com/MaheshIare/microservices-arch-demo/tree/master/zuul-api-gateway)** : Custom spring boot based zuul api gateway, implemented using [Netflix Zuul](https://github.com/Netflix/zuul) for routing the requests to respective micro-service based on the path
 
-5. **[student-api-service](https://github.com/MaheshIare/microservices-arch-demo/student-api-service)** : A simple micro-service for exposing REST API's pertaining to Student datastore
+5. **[student-api-service](https://github.com/MaheshIare/microservices-arch-demo/tree/master/student-api-service)** : A simple micro-service for exposing REST API's pertaining to Student datastore
 
-6. **[course-api-service](https://github.com/MaheshIare/microservices-arch-demo/course-api-service)** : A simple micro-service for exposing REST API's pertaining to Course datastore
+6. **[course-api-service](https://github.com/MaheshIare/microservices-arch-demo/tree/master/course-api-service)** : A simple micro-service for exposing REST API's pertaining to Course datastore
 
 ## Note
-For demo purpose, i have bundled all the modules together and created a multi module project. But you have the flexibility of decoupling them and create CI-CD for each module independently. And as each module is independent of each other, we can simply get the artifact and deploy it onto any cloud env.
+For demo purpose, i bundled all the modules together and created a multi module project. But you have the flexibility of decoupling them and create CI-CD for each module independently. And as each module is independent of each other, we can simply get the artifact and deploy it onto any cloud env.
 
 ## Build instructions
 ```java
@@ -85,7 +85,7 @@ java -jar student-api-service-0.0.1.jar
 java -jar course-api-service-0.0.1.jar
 ```
 
-Once the applications are up and running, you can simple access the below API's using Rest Client or Postman
+Once the applications are up and running, you can simply access the below API's using Rest Client or Postman
 
 ```java
 student-api-service exposes below API's
@@ -96,7 +96,7 @@ student-api-service exposes below API's
 course-api-service exposes below API's
 	GET - /api/v1/course - Fetch all the courses info
 	GET - /api/v1/course/{courseId} - Fetch the course info associated with course id
-	GET - /api/v1/course/student/{courseCode} - Fetch all the students info associated with particular coursecode
+	GET - /api/v1/course/student/{courseCode} - Fetch all the students info associated with particular coursecode(will make a call to student-api-service)
 ```
 
 ## Important Info
