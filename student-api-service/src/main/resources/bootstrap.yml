@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: student-api-service
+  cloud:    config:
+      uri: http://localhost:8888/cloud-config-server      name: student-api-service
+  profiles:
+    active: dev

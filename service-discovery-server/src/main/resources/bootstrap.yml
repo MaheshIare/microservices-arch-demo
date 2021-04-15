@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: service-discovery-server
+  cloud:    config:
+      uri: http://localhost:8888/cloud-config-server      name: service-discovery-server
+  profiles:
+    active: dev
